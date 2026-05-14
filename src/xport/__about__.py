@@ -15,7 +15,10 @@ import pathlib
 from collections import namedtuple
 
 # Community Packages
-from pkg_resources import DistributionNotFound, get_distribution
+try:
+    from pkg_resources import DistributionNotFound, get_distribution
+except ModuleNotFoundError:
+    from importlib.metadata import PackageNotFoundError as DistributionNotFound, distribution as get_distribution
 
 __all__ = [
     '__version__',
